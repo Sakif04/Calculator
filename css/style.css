@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+#heading {
+  color: #cf2b2b;
+  text-align: center;
+  padding: 2rem;
+}
+
+.calculator {
+  text-align: center;
+  padding-top: 1rem;
+  background-color: #3b0404;
+  width: 45rem;
+  height: 40rem;
+  display: block;
+  margin: auto;
+}
+
+.calculator .calc-display {
+  background-color: #ddd;
+  width: 90%;
+  height: 3rem;
+  margin: 0.5rem auto;
+}
+
+.calculator .calc-display input {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 2rem;
+  width: 100%;
+  height: 100%;
+  color: #cf2b2b;
+  background-color: #ddd;
+}
+
+.calculator .calc-display input:focus {
+  border: #ff0000;
+}
+
+.calculator .calc-body {
+  padding: 3rem 3rem;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-column-gap: 0rem;
+          column-gap: 0rem;
+  grid-gap: 0.8rem;
+  -ms-grid-rows: (4rem)[8];
+      grid-template-rows: repeat(8, 4rem);
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+}
+
+.calculator .calc-body .equal {
+  grid-column: 1/-1 !important;
+}
+
+.calculator .calc-body .calc-btn-div {
+  font-size: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  -ms-grid-row: 1;
+  grid-area: 1fr;
+  width: 100%;
+  height: 100%;
+}
+
+.calculator .calc-body .calc-btn-div .calc-btn {
+  border: none;
+  border-radius: 0.5rem;
+  -webkit-box-shadow: #ccdbe8 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+          box-shadow: #ccdbe8 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  height: 100%;
+  width: 100%;
+  font-size: 2rem;
+  border: none;
+  background-color: #de847b;
+  color: #fff;
+}
+
+.calculator .calc-body .calc-btn-div .calc-btn:hover {
+  color: #de847b;
+  background-color: #fff;
+}
+/*# sourceMappingURL=style.css.map */
