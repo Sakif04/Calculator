@@ -12,17 +12,31 @@
             referrerpolicy="no-referrer"
         />
         <link rel="stylesheet" href="./css/style.css" />
-
         <title>Document</title>
     </head>
     <body>
         <header id="heading"><h1>Calculator with JS</h1></header>
         <main class="calculator">
             <div class="calc-display">
-                <input type="number" id="input" />
+                <h4 class="input-display">0</h4>
+                <input type="text" step="0.01" id="input" />
             </div>
 
             <div class="calc-body">
+                <div class="calc-btn-div">
+                    <button id="del-btn" class="calc-btn">
+                        <i class="fas fa-backspace"></i>
+                    </button>
+                </div>
+                <div class="calc-btn-div reset">
+                    <button id="reset-btn" class="calc-btn">AC</button>
+                </div>
+                <div class="calc-btn-div equal">
+                    <button id="equal-btn" class="calc-btn">=</button>
+                </div>
+                <div class="calc-btn-div">
+                    <button id="decimal" class="calc-btn">.</button>
+                </div>
                 <div class="calc-btn-div">
                     <button id="one" class="calc-btn">1</button>
                 </div>
@@ -69,14 +83,6 @@
                 </div>
                 <div class="calc-btn-div">
                     <button id="percent-btn" class="calc-btn">%</button>
-                </div>
-                <div class="calc-btn-div equal">
-                    <button id="equal-btn" class="calc-btn">=</button>
-                </div>
-                <div class="calc-btn-div reset">
-                    <button id="reset-btn" class="calc-btn">
-                        <i class="fas fa-sync"></i>
-                    </button>
                 </div>
             </div>
         </main>

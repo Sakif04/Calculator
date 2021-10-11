@@ -9,7 +9,9 @@ const numberBtn = [
     "eight",
     "nine",
     "zero",
+    "decimal",
 ];
+
 const executionId = {
     add: "add-btn",
     mul: "multiply-btn",
@@ -18,6 +20,7 @@ const executionId = {
     percent: "percent-btn",
     divide: "divide",
     equal: "equal-btn",
+    del: "del-btn",
     reset: "reset-btn",
 };
 
@@ -30,21 +33,32 @@ function click(dom, callback) {
 }
 
 const input = selector("#input");
+const dispaly = selector(".input-display");
+
+window.addEventListener("load", () => {
+    input.value = "";
+});
 
 numberBtn.forEach((btn) => {
     const numBtn = selector("#" + btn);
     click(numBtn, (e) => {
-        input.value += e.target.innerText;
+        if (e.target.id === "decimal") {
+            input.value.includes(".")
+                ? alert("You can use decimal only once")
+                : (input.value += ".");
+        } else {
+            input.value += e.target.innerText;
+            console.log(e.target.innerText);
+        }
     });
 });
+
 let initialFunc;
 let output;
 function execute(e) {
     try {
         let inputNum = parseFloat(input.value);
-        let isInputcorrect = typeof input.value;
         console.log(e.target.id);
-        console.log(isInputcorrect);
         const clickedBtnId = Object.values(executionId).find(
             (id) => e.target.id === id
         );
@@ -52,7 +66,6 @@ function execute(e) {
         switch (clickedBtnId) {
             case executionId.add:
                 initialFunc = add(inputNum);
-                console.log(initialFunc);
                 input.value = "";
                 break;
             case executionId.div || executionId.divide:
@@ -63,46 +76,86 @@ function execute(e) {
                 initialFunc = subtract(inputNum);
                 input.value = "";
                 break;
+            case executionId.del:
+                let str = inputNum.toString();
+                let len = str.length;
+                console.log(str);
+                newStr = str.substr(0, len - 1);
+                console.log(newStr);
+                input.value = newStr;
+                break;
             case executionId.mul:
                 initialFunc = multiply(inputNum);
                 input.value = "";
                 break;
             case executionId.percent:
                 output = percent(inputNum);
+                input.value = output;
                 break;
             case executionId.reset:
                 output = "";
+                input.value = output;
                 break;
             case executionId.equal:
                 output = initialFunc(inputNum);
+                input.value = output;
                 break;
             case "default":
+                input.value = "";
+                input.value = output;
                 break;
         }
-        input.value = output;
     } catch (err) {
-        alert(err.message);
+        console.log(err.message);
+        return;
     }
 }
-console.log();
+
 Object.values(executionId).forEach((btn) => {
     const btnId = selector("#" + btn);
     click(btnId, execute);
 });
 
+//Actions
 const add = (a) => {
-    return (b) => a + b;
+    let str = `${a}+`;
+    dispaly.innerText = str;
+    return (b) => {
+        str = `${a}+${b}`;
+        dispaly.innerText = str;
+        return eval(str);
+    };
 };
 const subtract = (a) => {
-    return (b) => a - b;
+    let str = `${a} - `;
+    dispaly.innerText = str;
+    return (b) => {
+        str = `${a}-${b}`;
+        dispaly.innerText = str;
+        return eval(str);
+    };
 };
 const multiply = (a) => {
-    return (b) => a * b;
+    let str = `${a}X`;
+    dispaly.innerText = str;
+    return (b) => {
+        str = `${a}*${b}`;
+        dispaly.innerText = str;
+        return eval(str);
+    };
 };
 const percent = (a) => {
-    let x = a < 1 ? a * 100 : "";
+    let x = a < 1 ? a * 100 : a;
+    let str = `% of ${a}`;
+    dispaly.innerText = str;
     return x;
 };
 const divide = (a) => {
-    return (b) => a / b;
+    let str = `${a} /`;
+    dispaly.innerText = str;
+    return (b) => {
+        str = `${a}/${b}`;
+        dispaly.innerText = str;
+        return eval(str);
+    };
 };
